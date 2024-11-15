@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Task Bleach - Gerenciamento de Tarefas</title>
+    <link rel="stylesheet" href="./style/style.css">
+    <link rel="stylesheet" href="./style/font.css">
+</head>
+
+<body id="corpinho">
+    <header class="main-header">
+        <h1 class="title">Task Bleach</h1>
+        <nav class="nav-bar">
+            <button id="logout-btn">Saira</button>
+        </nav>
+    </header>
+
+    <main id="task-container">
+        <section id="task-actions">
+            <button id="add-task-btn">+ Adicionar Tarefa</button>
+            <input type="text" id="search-task" placeholder="Pesquisar tarefas...">
+            <div id="filters">
+                <label for="filter-status">Filtrar por:</label>
+                <select id="filter-status">
+                    <option value="all">Todas</option>
+                    <option value="pending">Pendentes</option>
+                    <option value="completed">Concluídas</option>
+                </select>
+            </div>
+        </section>
+
+        <section id="task-list">
+            <h2>Minhas Tarefas</h2>
+            <ul id="tasks">
+                <!-- Tarefas serão carregadas dinamicamente aqui -->
+            </ul>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <p>Task Bleach © 2024</p>
+    </footer>
+
+    <script src="./scripts/main.js"></script>
+</body>
+
+</html>
