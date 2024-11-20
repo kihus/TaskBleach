@@ -10,16 +10,15 @@
 
 <body id="corpinho">
     <main id="main-suporte" style="height: 750px;">
-        <h1 class="title">Task Bleach teste</h1>
+        <h1 class="title">Task Bleach</h1>
         <div id="btn-comeback">
             <button onclick="history.back()">
                 <img src="./components/images/setas-traseiras.png" alt="voltar" width="25px" height="25px">
             </button>
         </div>
         <div class="login-container" style="height: 500px;">
-
             <h2>Criar uma conta</h2>
-            <form method="post" action="grava.jsp">
+            <form method="post" action="login.html">
                 <input type="text" id="name" style="height: 45px;" name="txtNome" placeholder="Nome*" required>
                 <input type="text" id="lastname" style="height: 45px;" name="txtSobreNome"
                     placeholder="Sobrenome (opcional)">
@@ -31,45 +30,42 @@
                 <input type="password" id="confirmPassword" style="height: 25px;" name="senha"
                     placeholder="Confirmar senha*" onblur="verificarSenhaIgual()" required>
                 <span id="mensagemErro" class="mensagem-erro"></span>
-                Nascimento
-                <input type="date" placeholder="Dia" maxlength="2" id="day" name="txtDataNasc"
-                    style="font-size: 15px; padding: 10px; padding-top: 17.5px; padding-bottom: 17.5px; justify-content: center; align-items: center;"
-                    onkeypress="if (!isNaN(String.fromCharCode(window.event.keyCode))) return true; else return false;">
-                <input type="submit" value="Gravar">
-
-
+                <label for="day">Nascimento</label>
+                <input type="date" id="day" name="txtDataNasc" style="height: 45px;" required>
+                <input type="submit" value="Cadastrar">
             </form>
-
 
             <script>
                 function verificarForcaSenha(inputSenha) {
-                    var senha = inputSenha.value;
-
-                    var senhaFraca = senha.length < 8;
+                    const senha = inputSenha.value;
+                    const senhaFraca = senha.length < 8;
+                    const mensagem = document.getElementById("senhaFraca");
 
                     if (senhaFraca) {
+                        mensagem.textContent = "A senha deve ter pelo menos 8 caracteres.";
+                        mensagem.style.color = "red";
                         inputSenha.classList.add("SenhaFraca");
                     } else {
+                        mensagem.textContent = "";
                         inputSenha.classList.remove("SenhaFraca");
                     }
                 }
 
                 function verificarSenhaIgual() {
-                    var password = document.getElementById("password").value;
-                    var confirmPassword = document.getElementById("confirmPassword").value;
-                    var mensagemErro = document.getElementById("mensagemErro");
+                    const password = document.getElementById("password").value;
+                    const confirmPassword = document.getElementById("confirmPassword").value;
+                    const mensagemErro = document.getElementById("mensagemErro");
 
-                    if (password != confirmPassword) {
-                        mensagemErro.textContent = "A confirmação de senha não confere.";
+                    if (password !== confirmPassword) {
+                        mensagemErro.textContent = "As senhas não conferem.";
+                        mensagemErro.style.color = "red";
                     } else {
                         mensagemErro.textContent = "";
                     }
-
-
                 }
             </script>
-
         </div>
-
     </main>
 </body>
+
+</html>

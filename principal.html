@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Task Bleach - Gerenciamento de Tarefas</title>
     <link rel="stylesheet" href="./style/style.css">
     <link rel="stylesheet" href="./style/font.css">
@@ -12,17 +13,17 @@
     <header class="main-header">
         <h1 class="title">Task Bleach</h1>
         <nav class="nav-bar">
-            <button id="logout-btn">Saira</button>
+            <button id="logout-btn" onclick="logout()">Sair</button>
         </nav>
     </header>
 
     <main id="task-container">
         <section id="task-actions">
-            <button id="add-task-btn">+ Adicionar Tarefa</button>
-            <input type="text" id="search-task" placeholder="Pesquisar tarefas...">
+            <button id="add-task-btn" onclick="openAddTaskModal()">+ Adicionar Tarefa</button>
+            <input type="text" id="search-task" placeholder="Pesquisar tarefas..." oninput="filterTasks()">
             <div id="filters">
                 <label for="filter-status">Filtrar por:</label>
-                <select id="filter-status">
+                <select id="filter-status" onchange="filterTasks()">
                     <option value="all">Todas</option>
                     <option value="pending">Pendentes</option>
                     <option value="completed">Concluídas</option>
@@ -42,7 +43,37 @@
         <p>Task Bleach © 2024</p>
     </footer>
 
-    <script src="./scripts/main.js"></script>
+    <script>
+        // Função para deslogar e redirecionar para a página de login
+        function logout() {
+            window.location.href = './login.html';
+        }
+
+        // Função simulada para abrir modal de adicionar tarefa (substituir pela lógica real)
+        function openAddTaskModal() {
+            alert('Abrindo modal para adicionar nova tarefa...');
+        }
+
+        // Função para filtrar tarefas
+        function filterTasks() {
+            const searchQuery = document.getElementById('search-task').value.toLowerCase();
+            const filterStatus = document.getElementById('filter-status').value;
+            console.log(`Filtrando tarefas: ${searchQuery}, Status: ${filterStatus}`);
+            // Lógica real será implementada ao conectar a API
+        }
+
+        // Função para carregar tarefas (simulação)
+        function loadTasks() {
+            const taskList = document.getElementById('tasks');
+            taskList.innerHTML = `
+                <li>Tarefa 1 <span class="status pending">Pendente</span></li>
+                <li>Tarefa 2 <span class="status completed">Concluída</span></li>
+            `;
+        }
+
+        // Carregar tarefas ao iniciar a página
+        document.addEventListener('DOMContentLoaded', loadTasks);
+    </script>
 </body>
 
 </html>
