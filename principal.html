@@ -127,7 +127,7 @@
     <!-- Modal para adicionar ou editar tarefa -->
     <div id="add-task-modal" class="hidden">
         <div class="modal-content">
-            <h2>Adicionar Nova Tarefa</h2>
+            <h2 id="modal-title">Adicionar Nova Tarefa</h2>
             <form id="add-task-form">
                 <label for="title">Título:</label>
                 <input type="text" id="title" name="title" required>
@@ -141,7 +141,7 @@
                     <option value="completed">Concluída</option>
                 </select>
 
-                <button type="submit">Adicionar Tarefa</button>
+                <button type="submit">Salvar</button>
                 <button type="button" onclick="closeAddTaskModal()">Cancelar</button>
             </form>
         </div>
@@ -154,130 +154,7 @@
         <p>Task Bleach © 2024</p>
     </footer>
 
-    <script>
-        let currentEditingTask = null;  // Variável para armazenar a tarefa que está sendo editada
-        const modal = document.getElementById("add-task-modal");
-        const overlay = document.getElementById("modal-overlay");
-        const form = document.getElementById("add-task-form");
-        const taskList = document.getElementById("tasks");
-
-        // Função para abrir o modal
-        function openAddTaskModal(task = null) {
-            currentEditingTask = task;
-            if (task) {
-                // Se a tarefa está sendo editada, preenche o formulário com os dados
-                document.getElementById("title").value = task.title;
-                document.getElementById("description").value = task.description;
-                document.getElementById("status").value = task.status;
-                form.querySelector('button[type="submit"]').textContent = "Salvar Tarefa";  // Alterar texto do botão para "Salvar"
-            } else {
-                form.querySelector('button[type="submit"]').textContent = "Adicionar Tarefa";  // Caso contrário, o botão permanece como "Adicionar"
-            }
-
-            modal.classList.remove("hidden");
-            overlay.classList.add("active");
-        }
-
-        // Função para fechar o modal
-        function closeAddTaskModal() {
-            modal.classList.add("hidden");
-            overlay.classList.remove("active");
-            form.reset();  // Reseta os campos do formulário
-            currentEditingTask = null;
-        }
-
-        // Função para deslogar e redirecionar para a página de login
-        function logout() {
-            window.location.href = './login.html';
-        }
-
-        // Função para adicionar ou editar a tarefa
-        form.addEventListener("submit", (event) => {
-            event.preventDefault();
-
-            const title = form.title.value;
-            const description = form.description.value;
-            const status = form.status.value;
-
-            if (currentEditingTask) {
-                // Se estamos editando, atualiza a tarefa
-                currentEditingTask.title = title;
-                currentEditingTask.description = description;
-                currentEditingTask.status = status;
-
-                const taskItem = document.getElementById(currentEditingTask.id);
-                taskItem.querySelector(".task-title").textContent = title;
-                taskItem.querySelector(".task-status").textContent = status === 'pending' ? 'Pendente' : 'Concluída';
-                taskItem.querySelector(".task-status").className = `task-status ${status}`;
-            } else {
-                // Caso contrário, adiciona uma nova tarefa
-                const taskId = `task-${Date.now()}`;
-                const taskItem = document.createElement("li");
-                taskItem.id = taskId;
-                taskItem.classList.add("task-item");
-
-                taskItem.innerHTML = `
-                    <span class="task-title">${title}</span> - 
-                    <span class="task-description">${description}</span>
-                    <span class="task-status ${status}">${status === 'pending' ? 'Pendente' : 'Concluída'}</span>
-                    <div class="buttons">
-                        <button class="edit" onclick="openAddTaskModal({id: '${taskId}', title: '${title}', description: '${description}', status: '${status}'})">Editar</button>
-                        <button class="delete" onclick="deleteTask('${taskId}')">Excluir</button>
-                    </div>
-                `;
-                taskList.appendChild(taskItem);
-            }
-
-            closeAddTaskModal();
-        });
-
-        // Função para excluir tarefa
-        function deleteTask(taskId) {
-            const taskItem = document.getElementById(taskId);
-            taskItem.remove();
-        }
-
-        // Função para carregar tarefas (simulação inicial)
-        function loadTasks() {
-            // Tarefas iniciais (pode ser substituído por dados reais)
-            const task1 = {
-                id: `task-${Date.now() + 1}`,
-                title: "Tarefa 1",
-                description: "Descrição da tarefa 1",
-                status: "pending"
-            };
-            const task2 = {
-                id: `task-${Date.now() + 2}`,
-                title: "Tarefa 2",
-                description: "Descrição da tarefa 2",
-                status: "completed"
-            };
-
-            taskList.innerHTML = `
-                <li id="${task1.id}" class="task-item">
-                    <span class="task-title">${task1.title}</span> - 
-                    <span class="task-description">${task1.description}</span>
-                    <span class="task-status ${task1.status}">${task1.status === 'pending' ? 'Pendente' : 'Concluída'}</span>
-                    <div class="buttons">
-                        <button class="edit" onclick="openAddTaskModal(${JSON.stringify(task1)})">Editar</button>
-                        <button class="delete" onclick="deleteTask('${task1.id}')">Excluir</button>
-                    </div>
-                </li>
-                <li id="${task2.id}" class="task-item">
-                    <span class="task-title">${task2.title}</span> - 
-                    <span class="task-description">${task2.description}</span>
-                    <span class="task-status ${task2.status}">${task2.status === 'pending' ? 'Pendente' : 'Concluída'}</span>
-                    <div class="buttons">
-                        <button class="edit" onclick="openAddTaskModal(${JSON.stringify(task2)})">Editar</button>
-                        <button class="delete" onclick="deleteTask('${task2.id}')">Excluir</button>
-                    </div>
-                </li>
-            `;
-        }
-
-        // Carregar tarefas ao iniciar a página
-        document.addEventListener('DOMContentLoaded', loadTasks);
-    </script>
+    <script src="./scripts/main.js"></script>
 </body>
 
 </html>
