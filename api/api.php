@@ -29,7 +29,7 @@ function createUser($conn) {
         }
 
         // Usando prepared statements para evitar SQL Injection
-        $stmt = $conn->prepare("INSERT INTO users (name, email, password) VALUES (?, ?, ?)");
+        $stmt = $conn->prepare("INSERT INTO users_new (name, email, password) VALUES (?, ?, ?)");
         $stmt->bind_param("sss", $name, $email, $password);
 
         if ($stmt->execute()) {
@@ -46,7 +46,7 @@ function createUser($conn) {
 
 // Função para ler usuários
 function readUsers($conn) {
-    $sql = "SELECT id, name, email FROM users";
+    $sql = "SELECT id, name, email FROM users_new";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
@@ -76,7 +76,7 @@ function updateUser($conn) {
         }
 
         // Usando prepared statements
-        $stmt = $conn->prepare("UPDATE users SET name = ?, email = ? WHERE id = ?");
+        $stmt = $conn->prepare("UPDATE users_new SET name = ?, email = ? WHERE id = ?");
         $stmt->bind_param("ssi", $name, $email, $id);
 
         if ($stmt->execute()) {
@@ -99,7 +99,7 @@ function deleteUser($conn) {
         $id = $data['id'];
 
         // Usando prepared statements
-        $stmt = $conn->prepare("DELETE FROM users WHERE id = ?");
+        $stmt = $conn->prepare("DELETE FROM users_new WHERE id = ?");
         $stmt->bind_param("i", $id);
 
         if ($stmt->execute()) {
@@ -126,7 +126,7 @@ function createTask($conn) {
         $user_id = $data->user_id;
 
         // Verificando se o usuário existe
-        $stmt = $conn->prepare("SELECT id FROM users WHERE id = ?");
+        $stmt = $conn->prepare("SELECT id FROM users_new WHERE id = ?");
         $stmt->bind_param("i", $user_id);
         $stmt->execute();
         $stmt->store_result();
@@ -139,7 +139,7 @@ function createTask($conn) {
         $stmt->close();
 
         // Usando prepared statements
-        $stmt = $conn->prepare("INSERT INTO tasks (title, description, status, user_id) VALUES (?, ?, ?, ?)");
+        $stmt = $conn->prepare("INSERT INTO tasks_new (title, description, status, user_id) VALUES (?, ?, ?, ?)");
         $stmt->bind_param("sssi", $title, $description, $status, $user_id);
 
         if ($stmt->execute()) {
@@ -160,7 +160,7 @@ function readTasks($conn) {
         $id = $_GET['id'];
 
         // Usando prepared statements
-        $stmt = $conn->prepare("SELECT * FROM tasks WHERE id = ?");
+        $stmt = $conn->prepare("SELECT * FROM tasks_new WHERE id = ?");
         $stmt->bind_param("i", $id);
         $stmt->execute();
         $result = $stmt->get_result();
@@ -173,7 +173,7 @@ function readTasks($conn) {
 
         $stmt->close();
     } else {
-        $sql = "SELECT * FROM tasks";
+        $sql = "SELECT * FROM tasks_new";
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {
@@ -200,7 +200,7 @@ function updateTask($conn) {
         $status = $data['status'];
 
         // Usando prepared statements
-        $stmt = $conn->prepare("UPDATE tasks SET title = ?, description = ?, status = ? WHERE id = ?");
+        $stmt = $conn->prepare("UPDATE tasks_new SET title = ?, description = ?, status = ? WHERE id = ?");
         $stmt->bind_param("sssi", $title, $description, $status, $id);
 
         if ($stmt->execute()) {
@@ -223,7 +223,7 @@ function deleteTask($conn) {
         $id = $data['id'];
 
         // Usando prepared statements
-        $stmt = $conn->prepare("DELETE FROM tasks WHERE id = ?");
+        $stmt = $conn->prepare("DELETE FROM tasks_new WHERE id = ?");
         $stmt->bind_param("i", $id);
 
         if ($stmt->execute()) {
@@ -238,26 +238,34 @@ function deleteTask($conn) {
     }
 }
 
-// Roteamento baseado no método e no recurso
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['users'])) {
-    createUser($conn);
-} elseif ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['users'])) {
-    readUsers($conn);
-} elseif ($_SERVER['REQUEST_METHOD'] === 'PUT' && isset($_GET['users'])) {
-    updateUser($conn);
-} elseif ($_SERVER['REQUEST_METHOD'] === 'DELETE' && isset($_GET['users'])) {
-    deleteUser($conn);
-} elseif ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['tasks'])) {
-    createTask($conn);
-} elseif ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['tasks'])) {
-    readTasks($conn);
-} elseif ($_SERVER['REQUEST_METHOD'] === 'PUT' && isset($_GET['tasks'])) {
-    updateTask($conn);
-} elseif ($_SERVER['REQUEST_METHOD'] === 'DELETE' && isset($_GET['tasks'])) {
-    deleteTask($conn);
-} else {
-    echo json_encode(array("message" => "Recurso ou método não encontrado."));
-}
+// Roteamento para os métodos
+$requestMethod = $_SERVER['REQUEST_METHOD'];
+$uri = explode('/', trim($_SERVER['REQUEST_URI'], '/'));
 
-$conn->close();
+if (isset($uri[0]) && isset($uri[1])) {
+    $resource = $uri[0];
+    $id = isset($uri[1]) ? $uri[1] : null;
+
+    if ($resource == 'users') {
+        if ($requestMethod == 'GET') {
+            readUsers($conn);
+        } elseif ($requestMethod == 'POST') {
+            createUser($conn);
+        } elseif ($requestMethod == 'PUT') {
+            updateUser($conn);
+        } elseif ($requestMethod == 'DELETE') {
+            deleteUser($conn);
+        }
+    } elseif ($resource == 'tasks') {
+        if ($requestMethod == 'GET') {
+            readTasks($conn);
+        } elseif ($requestMethod == 'POST') {
+            createTask($conn);
+        } elseif ($requestMethod == 'PUT') {
+            updateTask($conn);
+        } elseif ($requestMethod == 'DELETE') {
+            deleteTask($conn);
+        }
+    }
+}
 ?>
