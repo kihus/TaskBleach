@@ -1,43 +1,31 @@
-/* Reset básico */
-body,
-h1,
-h2,
-form,
-input,
-button {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 /* Corpo da página */
 body#corpinho {
     font-family: Arial, sans-serif;
-    background: linear-gradient(135deg, #4A90E2, #9013FE);
-    color: #fff;
+    background: linear-gradient(135deg, #3B8CE5, #764BF5);
+    color: #f4f4f4;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
+    margin: 0;
 }
 
 /* Área principal */
 main#main-suporte {
-    width: 100%;
-    max-width: 400px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    padding: 20px;
+    width: 90%; /* Tornar mais responsivo */
+    max-width: 600px; /* Aumentar largura máxima */
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+    padding: 35px; /* Mais espaçamento interno */
     text-align: center;
 }
 
-/* Título principal */
+/* Título */
 h1.title {
-    font-size: 1.8em;
-    margin-bottom: 15px;
-    text-transform: uppercase;
-    color: #fff;
+    font-size: 3em; /* Aumentar o tamanho da fonte */
+    margin-bottom: 30px; /* Mais espaço abaixo */
+    color: #ffffff;
 }
 
 /* Botão voltar */
@@ -45,489 +33,150 @@ h1.title {
     background: transparent;
     border: none;
     cursor: pointer;
-    margin-bottom: 15px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    margin-bottom: 30px; /* Mais espaçamento inferior */
 }
 
 #btn-comeback img {
+    width: 50px; /* Aumentar tamanho do ícone */
+    height: 50px;
     transition: transform 0.2s;
 }
 
 #btn-comeback button:hover img {
-    transform: scale(1.1) rotate(-10deg);
+    transform: scale(1.5) rotate(-10deg); /* Efeito maior */
 }
 
 /* Formulário */
 .login-container {
-    background: rgba(255, 255, 255, 0.15);
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    background: rgba(255, 255, 255, 0.4); /* Fundo levemente opaco */
+    border-radius: 15px; /* Bordas arredondadas */
+    padding: 20px; /* Espaçamento interno */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    height: 500px;
 }
 
 .login-container h2 {
-    font-size: 1.5em;
-    margin-bottom: 15px;
-    color: #fff;
+    font-size: 2.5em; /* Fonte maior */
+    margin-bottom: 20px;
+    color: #ffffff;
 }
 
-form input {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border: none;
-    border-radius: 5px;
-    font-size: 1em;
-}
 
-form input:focus {
-    outline: none;
-    box-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
-}
-
-form input[type="submit"] {
-    background: #4CAF50;
-    color: #fff;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background 0.3s;
-}
-
-form input[type="submit"]:hover {
-    background: #45A049;
-}
-
-/* Mensagens de erro */
-.mensagem-erro {
-    color: #F44336;
-    font-size: 0.9em;
-    display: block;
-    margin: 5px 0;
-}
-
-.mensagem-senha-fraca {
-    color: #FFC107;
-    font-size: 0.9em;
-    display: block;
-    margin: 5px 0;
-}
-
-/* Inputs de data */
-input[type="date"] {
-    color: #333;
-    background: #fff;
-    font-size: 0.9em;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-}
-
-/* Reset básico */
-body,
-h1,
-h2,
-form,
-input,
-button,
-a {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    text-decoration: none;
-}
-
-/* Corpo da página */
-body#corpinho {
-    font-family: Arial, sans-serif;
-    background: linear-gradient(135deg, #4A90E2, #9013FE);
-    color: #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-}
-
-/* Área principal */
-main#main-suporte {
-    width: 100%;
-    max-width: 400px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    padding: 20px;
-    text-align: center;
-}
-
-/* Título principal */
-h1.title {
-    font-size: 1.8em;
-    margin-bottom: 15px;
-    text-transform: uppercase;
-    color: #fff;
-}
-
-/* Botão voltar */
-#btn-comeback button {
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    margin-bottom: 15px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-#btn-comeback img {
-    transition: transform 0.2s;
-}
-
-#btn-comeback button:hover img {
-    transform: scale(1.1) rotate(-10deg);
-}
-
-/* Container de login */
-.login-container {
-    background: rgba(255, 255, 255, 0.15);
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.login-container h2 {
-    font-size: 1.5em;
-    margin-bottom: 15px;
-    color: #fff;
-}
-
-/* Formulário */
 form.form-login input {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
+    width: calc(100% - 20px); /* Ajusta para o padding */
+    padding: 12px; /* Espaço interno do input */
+    margin: 12px 0; /* Espaço entre os inputs */
     border: none;
     border-radius: 5px;
     font-size: 1em;
+    background: rgba(255, 255, 255, 0.9);
+    color: #333;
 }
+
 
 form.form-login input:focus {
     outline: none;
-    box-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+    box-shadow: 0 0 12px rgba(0, 123, 255, 0.8);
 }
 
 form.form-login button {
     width: 100%;
     background: #4CAF50;
-    color: #fff;
+    color: white;
     font-weight: bold;
-    font-size: 1em;
-    padding: 10px;
+    font-size: 1.5em; /* Aumentar fonte do botão */
+    padding: 15px; /* Aumentar espaçamento */
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
     transition: background 0.3s;
 }
 
 form.form-login button:hover {
-    background: #45A049;
+    background: #3D8C41;
 }
 
 /* Links auxiliares */
-.forget-password-container,
-.register-container {
-    margin-top: 15px;
-}
-
-.remove-style-a {
+.forget-password-container a,
+.register-container a {
     color: #FFD700;
-    font-size: 0.9em;
+    font-size: 1.2em; /* Aumentar tamanho da fonte */
     text-decoration: none;
     transition: color 0.3s;
 }
 
-.remove-style-a:hover {
+.forget-password-container{
+    margin-top: 40px;
+}
+
+.forget-password-container a:hover,
+.register-container a:hover {
     color: #FFA500;
 }
 
+.register-container{
+        font-size: large;
+        
+        margin-top: 20px;
+}
+
 .register-container a {
-    margin-left: 5px;
     font-weight: bold;
 }
-
-/* Reset básico */
-body,
-h1,
-h2,
-p,
-button,
-input,
-select,
-ul,
-li {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    text-decoration: none;
-}
-
-/* Corpo da página */
-body#corpinho {
-    font-family: Arial, sans-serif;
-    background: linear-gradient(135deg, #4A90E2, #9013FE);
-    color: #fff;
+/* Container de Cadastro */
+.register-container {
+    background: rgba(255, 255, 255, 0.3); /* Fundo consistente com o login */
+    border-radius: 15px; /* Bordas arredondadas */
+    padding: 30px; /* Mais espaço interno */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); /* Sombra igual ao login */
     display: flex;
     flex-direction: column;
-    align-items: center;
-    min-height: 100vh;
+    align-items: center; /* Centralizar elementos */
+    gap: 15px; /* Espaçamento entre os inputs */
 }
 
-/* Cabeçalho */
-.main-header {
-    width: 100%;
-    background-color: #333;
-    padding: 15px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: #fff;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-}
-
-.main-header .title {
-    font-size: 1.8em;
-    text-transform: uppercase;
-}
-
-.nav-bar button {
-    background-color: #FF5733;
-    color: white;
-    font-size: 1em;
+/* Inputs do formulário */
+form.form-register input[type="text"],
+form.form-register input[type="email"],
+form.form-register input[type="password"],
+form.form-register input[type="date"] {
+    width: 100%; /* Inputs preenchendo a largura */
+    max-width: 400px; /* Máximo de largura */
+    padding: 12px; /* Altura consistente */
+    font-size: 1.1em; /* Texto maior */
     border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.nav-bar button:hover {
-    background-color: #e04e29;
-}
-
-/* Container de tarefas */
-#task-container {
-    width: 100%;
-    max-width: 900px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    margin-top: 20px;
-}
-
-/* Seção de Ações */
-#task-actions {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
-#task-actions button {
-    background-color: #4CAF50;
-    color: white;
-    font-size: 1.2em;
-    padding: 10px 20px;
-    border-radius: 5px;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-#task-actions button:hover {
-    background-color: #45A049;
-}
-
-#task-actions input {
-    padding: 10px;
-    font-size: 1em;
-    width: 40%;
-    border-radius: 5px;
-    border: none;
-    outline: none;
-}
-
-#task-actions #filters {
-    display: flex;
-    align-items: center;
-}
-
-#task-actions select {
-    padding: 10px;
-    font-size: 1em;
-    margin-left: 10px;
-    border-radius: 5px;
-    border: none;
-    background-color: #fff;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.9); /* Fundo claro */
     color: #333;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* Lista de Tarefas */
-#task-list h2 {
-    font-size: 1.5em;
-    margin-bottom: 15px;
-    color: #fff;
-}
-
-#task-list ul {
-    list-style: none;
-    padding: 0;
-}
-
-#task-list ul li {
-    background: rgba(255, 255, 255, 0.1);
-    padding: 15px;
-    margin: 10px 0;
-    border-radius: 5px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-}
-
-#task-list ul li .task-name {
-    font-size: 1.2em;
-    color: #fff;
-}
-
-#task-list ul li button {
-    background-color: #FF5733;
-    color: white;
-    border: none;
-    padding: 8px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-#task-list ul li button:hover {
-    background-color: #e04e29;
-}
-
-/* Rodapé */
-.main-footer {
-    margin-top: 20px;
-    padding: 10px;
-    background-color: #333;
-    color: white;
-    text-align: center;
+/* Botão */
+form.form-register button {
     width: 100%;
-    position: absolute;
-    bottom: 0;
-    left: 0;
+    max-width: 400px;
+    background: #4CAF50; /* Cor consistente com o login */
+    color: white;
+    font-weight: bold;
+    font-size: 1.2em;
+    padding: 15px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s;
 }
 
-/* Responsividade */
-@media (max-width: 768px) {
-    #task-actions {
-        flex-direction: column;
-        align-items: stretch;
-    }
-
-    #task-actions input,
-    #task-actions button {
-        width: 100%;
-        margin-bottom: 10px;
-    }
-
-    #task-actions #filters {
-        flex-direction: column;
-        align-items: stretch;
-    }
-
-    #task-actions select {
-        width: 100%;
-    }
-
-    /* Estilo do Modal */
-    .modal {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.5);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 1000;
-        visibility: hidden;
-        opacity: 0;
-        transition: visibility 0s, opacity 0.3s;
-    }
-
-    .modal-content {
-        background-color: #fff;
-        border-radius: 8px;
-        width: 90%;
-        max-width: 500px;
-        padding: 20px;
-        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-        text-align: center;
-    }
-
-    .modal-content h2 {
-        margin-bottom: 20px;
-        font-size: 24px;
-        font-family: 'GT Walsheim', sans-serif;
-        color: #333;
-    }
-
-    .modal-content label {
-        display: block;
-        margin: 10px 0 5px;
-        font-weight: bold;
-        color: #555;
-    }
-
-    .modal-content input,
-    .modal-content textarea,
-    .modal-content select {
-        width: 100%;
-        padding: 10px;
-        margin-bottom: 15px;
-        border: 1px solid #ddd;
-        border-radius: 4px;
-        font-size: 16px;
-    }
-
-    .modal-content button {
-        background-color: #007BFF;
-        color: #fff;
-        border: none;
-        padding: 10px 20px;
-        font-size: 16px;
-        border-radius: 4px;
-        cursor: pointer;
-        transition: background-color 0.3s;
-    }
-
-    .modal-content button:hover {
-        background-color: #0056b3;
-    }
-
-    .hidden {
-        visibility: hidden;
-        opacity: 0;
-    }
-
-    .modal .close-btn {
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        font-size: 24px;
-        color: #333;
-        cursor: pointer;
-    }
-
+form.form-register button:hover {
+    background: #3D8C41; /* Cor hover consistente */
 }
+
+/* Label */
+form.form-register label {
+    margin-top: 20px;
+    font-size: 1.2em; /* Maior para melhor leitura */
+    color: #ffffff;
+    text-align: left;
+    width: 100%; /* Alinhamento igual ao input */
+    max-width: 400px;
+}
+
