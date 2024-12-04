@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -8,228 +7,6 @@
     <title>Task Bleach - Gerenciamento de Tarefas</title>
     <link rel="stylesheet" href="./style/style.css">
     <link rel="stylesheet" href="./style/font.css">
-    <style>
-        /* Corpo da página */
-        body#corpinho {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #3B8CE5, #764BF5);
-            color: #fff;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-
-        /* Cabeçalho */
-        header.main-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(0, 0, 0, 0.8);
-            padding: 15px 30px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-
-        header.main-header .title {
-            font-size: 1.8em;
-            font-weight: bold;
-            color: #FFD700;
-            margin: 0;
-        }
-
-        header.main-header .nav-bar #logout-btn {
-            background: #e74c3c;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            font-size: 1em;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-
-        header.main-header .nav-bar #logout-btn:hover {
-            background: #c0392b;
-        }
-
-        /* Área principal */
-        main#task-container {
-            flex: 1;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 30px;
-        }
-
-        section#task-actions {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-
-        #add-task-btn {
-            background: #4CAF50;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            font-size: 1.2em;
-            font-weight: bold;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-
-        #add-task-btn:hover {
-            background: #3D8C41;
-        }
-
-        #search-task {
-            flex: 1;
-            padding: 10px;
-            font-size: 1em;
-            border: 2px solid #ddd;
-            border-radius: 4px;
-        }
-
-        #filters label {
-            margin-right: 10px;
-        }
-
-        #filters select {
-            padding: 8px;
-            font-size: 1em;
-            border: 2px solid #ddd;
-            border-radius: 4px;
-        }
-
-        /* Lista de tarefas */
-        section#task-list {
-            background: rgba(255, 255, 255, 0.2);
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-        }
-
-        section#task-list h2 {
-            margin-bottom: 20px;
-            font-size: 1.5em;
-            color: #FFD700;
-        }
-
-        #tasks {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .task-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(255, 255, 255, 0.1);
-            padding: 10px;
-            border-radius: 4px;
-            margin-bottom: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-
-        .task-item:hover {
-            background: rgba(255, 255, 255, 0.2);
-        }
-
-        .task-item .buttons button {
-            border: none;
-            padding: 8px 12px;
-            border-radius: 4px;
-            color: #fff;
-            cursor: pointer;
-            font-size: 0.9em;
-        }
-
-        .task-item .buttons .delete {
-            background: #e74c3c;
-        }
-
-        .task-item .buttons .edit {
-            background: #f39c12;
-        }
-
-        .task-item .buttons button:hover {
-            opacity: 0.8;
-        }
-
-        /* Modal */
-        #add-task-modal {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 10;
-            background: #fff;
-            color: #333;
-            padding: 20px;
-            border-radius: 8px;
-            width: 90%;
-            max-width: 400px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
-        }
-
-        #add-task-modal h2 {
-            margin-bottom: 20px;
-            font-size: 1.5em;
-            color: #333;
-        }
-
-        #add-task-modal form label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
-
-        #add-task-modal form input,
-        #add-task-modal form textarea,
-        #add-task-modal form select {
-            width: 100%;
-            padding: 8px;
-            margin-bottom: 15px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            font-size: 1em;
-        }
-
-        #add-task-modal form button {
-            background: #3498db;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            font-size: 1em;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-
-        #add-task-modal form button:hover {
-            background: #2980b9;
-        }
-
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 5;
-            display: none;
-        }
-
-        .overlay.active {
-            display: block;
-        }
-    </style>
 </head>
 
 <body id="corpinho">
@@ -248,61 +25,46 @@
                 <label for="filter-status">Filtrar por:</label>
                 <select id="filter-status" onchange="filterTasks()">
                     <option value="all">Todas</option>
-                    <option value="pending">Pendentes</option>
-                    <option value="completed">Concluídas</option>
+                    <option value="Pendente">Pendentes</option>
+                    <option value="Em andamento">Em andamento</option>
+                    <option value="Concluído">Concluídas</option>
                 </select>
             </div>
         </section>
-        <div id="add-task-modal" class="hidden">
-            <div class="modal-content">
-                <h2 id="modal-title">Adicionar Nova Tarefa</h2>
-                <form id="add-task-form" onsubmit="addTask(event)">
-                    <label for="title">Título:</label>
-                    <input type="text" id="title" name="title" required>
-        
-                    <label for="description">Descrição:</label>
-                    <textarea id="description" name="description" required></textarea>
-        
-                    <label for="status">Status:</label>
-                    <select id="status" name="status" required>
-                        <option value="pending">Pendente</option>
-                        <option value="completed">Concluída</option>
-                    </select>
-        
-                    <button type="submit">Salvar</button>
-                    <button type="button" onclick="closeAddTaskModal()">Cancelar</button>
-                </form>
-            </div>
-        </div>
-        
-        <section id="task-list">
-            <h2>Minhas Tarefas</h2>
+
+        <section id="task-list" style="width: 800px;">
+            <h2 style="margin-bottom: -40px; margin-top: -15px;">Minhas Tarefas</h2>
             <ul id="tasks">
                 <!-- Tarefas dinâmicas aqui -->
+             
             </ul>
+        
+
         </section>
     </main>
 
     <!-- Modal para Adicionar/Editar Tarefas -->
     <div id="add-task-modal" class="hidden">
         <h2 id="modal-title">Adicionar Nova Tarefa</h2>
+         <button class="close-btn" onclick="closeElement()">X</button>
         <form id="add-task-form">
             <label for="title">Título:</label>
             <input type="text" id="title" name="title" required>
-            <label for="description">Descrição:</label>
-            <textarea id="description" name="description" required></textarea>
+            <label for="description"  >Descrição:</label>
+            <textarea id="description" class="description-alert" name="description" required></textarea>
             <label for="status">Status:</label>
-            <select id="status" name="status" required>
-                <option value="pending">Pendente</option>
-                <option value="completed">Concluída</option>
-            </select
+            <select id="status" class="status-alert" name="status" required>
+                <option value="Pendente">Pendente</option>
+                <option value="Em andamento">Em andamento</option>
+                <option value="Concluído">Concluído</option>
+            </select>
 
->
             <button type="button" onclick="saveTask()">Salvar</button>
         </form>
     </div>
-
-    <div class="overlay" id="overlay" onclick="closeAddTaskModal()"></div>
+    
+    <!-- Referência correta do script -->
+    <script src="./script.js"></script>
 </body>
 
 </html>
