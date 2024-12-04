@@ -3,9 +3,10 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Task Bleach</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Bleach - Login</title>
     <link rel="stylesheet" href="./style/style.css">
-    <link rel="stylesheet" href="./style/font.css">
+  
 </head>
 
 <body id="corpinho">
@@ -17,21 +18,60 @@
             </button>
         </div>
         <div class="login-container">
-
             <h2>Login</h2>
-            <form class="form-login" method="post" action="verificalogin.jsp">
-                <input type="text" class="input-border" id="email" name="email" placeholder="Seu Email" required>
-                <input type="password" id="senha" name="senha" placeholder="Sua Senha" required>
-                <button type="submit" style="margin-top: 50px; font-family: GT Walsheim, sans-serif;">Entrar</button>
+            <form id="loginForm" class="form-login">
+                <input type="email" class="input-border" id="email" name="email" placeholder="Seu Email" required>
+                <input type="password" id="password" name="password" placeholder="Sua Senha" required>
+                <span id="mensagemErro" class="mensagem-erro"></span>
+                <button type="submit" class="botao-entrar">Entrar</button>
             </form>
             <div class="forget-password-container">
-                <a href="#" class="remove-style-a" style="margin-top: 25px">Esqueceu sua senha?</a>
+                <a href="#" class="remove-style-a">Esqueceu sua senha?</a>
             </div>
             <div class="register-container">
-                Ainda não criou sua conta no Sharkin?<a href="./Cadastro.html" class="remove-style-a">Criar uma
+                Ainda não criou sua conta no Task Bleach? <a href="./Cadastro.html" class="remove-style-a">Criar uma
                     conta</a>
             </div>
         </div>
     </main>
 
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value.trim();
+            const mensagemErro = document.getElementById('mensagemErro');
+
+            if (!email || !password) {
+                mensagemErro.textContent = "Preencha todos os campos.";
+                mensagemErro.style.color = "yellow";
+                return;
+            }
+
+            try {
+                const response = await fetch('http://localhost/meu_projeto_api/login.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password })
+                });
+
+                const data = await response.json();
+
+                if (response.ok && data.user_id) {
+                    alert("Login realizado com sucesso!");
+                    window.location.href = "principal.html"; // Página principal após login
+                } else {
+                    mensagemErro.textContent = data.error || "Erro ao realizar login.";
+                    mensagemErro.style.color = "yellow";
+                }
+            } catch (error) {
+         
+                mensagemErro.textContent = "Erro ao conectar com a API.";
+                mensagemErro.style.color = "red";
+            }
+        });
+    </script>
 </body>
+
+</html>
