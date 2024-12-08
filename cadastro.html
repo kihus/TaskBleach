@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Bleach - Registro</title>
+    <link rel="stylesheet" href="./style/style.css">
+    <link rel="stylesheet" href="./style/font.css">
+</head>
+
+<body id="corpinho">
+    <main id="main-suporte" style="height: auto;">
+        <h1 class="title">Task Bleach</h1>
+        <div id="btn-comeback">
+            <button onclick="history.back()">
+                <img src="./components/images/17699.png" alt="voltar" width="25px" height="25px">
+            </button>
+        </div>
+        <div class="register-container">
+            <h2>Criar uma conta</h2>
+            <form id="registerForm" class="form-register">
+                <input type="text" id="name" name="txtNome" style="margin-top: 25px; padding: 15px;" placeholder="Nome*"
+                    required>
+                <input type="text" id="lastname" name="txtSobreNome" style="margin-top: 25px; padding: 15px;"
+                    placeholder="Sobrenome (opcional)">
+                <input type="email" id="email" name="txtEmail" style="margin-top: 25px; padding: 15px;"
+                    placeholder="Email*" required>
+                <input type="password" id="password" name="txtSenha" style="margin-top: 25px; padding: 15px;"
+                    placeholder="Senha*" onblur="verificarForcaSenha(this)" required>
+                <span id="senhaFraca" class="mensagem-senha-fraca"></span>
+                <input type="password" id="confirmPassword" name="senha" placeholder="Confirmar senha*"
+                    style="margin-top: 25px; padding: 15px;" onblur="verificarSenhaIgual()" required>
+                <span id="mensagemErro" class="mensagem-erro"></span>
+                <input type="date" id="day" style="margin-top: 25px; padding: 15px;" name="txtDataNasc" required>
+                <button type="submit" id="submitButton" style="margin-top: 25px;" disabled>Cadastrar</button>
+            </form>
+        </div>
+    </main>
+
+    <script>
+        // Verifica a força da senhaaa
+        function verificarForcaSenha(inputSenha) {
+            const senha = inputSenha.value;
+            const mensagem = document.getElementById("senhaFraca");
+
+            if (senha.length < 8) {
+                mensagem.textContent = "A senha deve ter pelo menos 8 caracteres.";
+                mensagem.style.color = "yellow";
+            } else {
+                mensagem.textContent = "";
+            }
+            validarFormulario();
+        }
+
+        // Verifica se as senhas são iguais
+        function verificarSenhaIgual() {
+            const password = document.getElementById("password").value;
+            const confirmPassword = document.getElementById("confirmPassword").value;
+            const mensagemErro = document.getElementById("mensagemErro");
+
+            if (password !== confirmPassword) {
+                mensagemErro.textContent = "As senhas não conferem.";
+                mensagemErro.style.color = "yellow";
+            } else {
+                mensagemErro.textContent = "";
+            }
+            validarFormulario();
+        }
+
+        // Valida o formulário para ativar o botão de submissão
+        function validarFormulario() {
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+
+            const submitButton = document.getElementById('submitButton');
+
+            if (name && email && password.length >= 8 && password === confirmPassword) {
+                submitButton.disabled = false;
+            } else {
+                submitButton.disabled = true;
+            }
+        }
+
+        // Manipula o evento de submissão do formulário
+        document.getElementById('registerForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const lastname = document.getElementById('lastname').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const birthDate = document.getElementById('day').value;
+
+            try {
+                const response = await fetch('http://localhost/meu_projeto_api/register.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        name,
+                        lastname,
+                        email,
+                        password,
+                        birthDate
+                    })
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    alert(data.message || "Cadastro realizado com sucesso!");
+                    window.location.href = "login.html"; // Redireciona para a página de login
+                } else {
+                    const errorData = await response.json();
+                    alert(errorData.error || "Erro ao cadastrar.");
+                }
+            } catch (error) {
+                console.error('Erro:', error);
+                alert("Erro ao conectar com a API.");
+            }
+        });
+    </script>
+</body>
+
+</html>
