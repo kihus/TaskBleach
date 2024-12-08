@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Bleach - Gerenciamento de Tarefas</title>
+    <link rel="stylesheet" href="./style/style.css">
+    <link rel="stylesheet" href="./style/font.css">
+</head>
+
+<body id="corpinho">
+    <header class="main-header">
+        <h1 class="title">Task Bleach</h1>
+        <nav class="nav-bar">
+            <button id="logout-btn" onclick="logout()">Sair</button>
+        </nav>
+    </header>
+
+    <main id="task-container">
+        <section id="task-actions">
+            <button id="add-task-btn" onclick="openAddTaskModal()">+ Adicionar Tarefa</button>
+            <input type="text" id="search-task" placeholder="Pesquisar tarefas..." oninput="filterTasks()">
+            <div id="filters">
+                <label for="filter-status">Filtrar por:</label>
+                <select id="filter-status" onchange="filterTasks()">
+                    <option value="all">Todas</option>
+                    <option value="Pendente">Pendentes</option>
+                    <option value="Em andamento">Em andamento</option>
+                    <option value="Concluído">Concluídas</option>
+                </select>
+            </div>
+        </section>
+
+        <section id="task-list" style="width: 800px;">
+            <h2 style="margin-bottom: -40px; margin-top: -15px;">Minhas Tarefas</h2>
+            <ul id="tasks">
+                <!-- Tarefas dinâmicas aqui -->
+             
+            </ul>
+        
+
+        </section>
+    </main>
+
+    <!-- Modal para Adicionar/Editar Tarefas -->
+    <div id="add-task-modal" class="hidden">
+        <h2 id="modal-title">Adicionar Nova Tarefa</h2>
+         <button class="close-btn" onclick="closeElement()">X</button>
+        <form id="add-task-form">
+            <label for="title">Título:</label>
+            <input type="text" id="title" name="title" required>
+            <label for="description"  >Descrição:</label>
+            <textarea id="description" class="description-alert" name="description" required></textarea>
+            <label for="status">Status:</label>
+            <select id="status" class="status-alert" name="status" required>
+                <option value="Pendente">Pendente</option>
+                <option value="Em andamento">Em andamento</option>
+                <option value="Concluído">Concluído</option>
+            </select>
+
+            <button type="button" onclick="saveTask()">Salvar</button>
+        </form>
+    </div>
+    
+    <!-- Referência correta do script -->
+    <script src="./script.js"></script>
+</body>
+
+</html>

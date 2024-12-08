@@ -1,0 +1,584 @@
+ /* Corpo da página */
+ body#corpinho {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #3B8CE5, #764BF5);
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Cabeçalho */
+header.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 15px 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+header.main-header .title {
+    font-size: 1.8em;
+    font-weight: bold;
+    color: #FFD700;
+    margin: 0;
+}
+
+header.main-header .nav-bar #logout-btn {
+    background: #e74c3c;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+header.main-header .nav-bar #logout-btn:hover {
+    background: #c0392b;
+}
+
+/* Área principal */
+main#task-container {
+    max-width: 1000px;
+    flex: 1;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+section#task-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+#add-task-btn {
+    background: #4CAF50;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1.2em;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+#add-task-btn:hover {
+    background: #3D8C41;
+}
+
+#search-task {
+    flex: 1;
+    padding: 10px;
+    font-size: 1em;
+    border: 2px solid #ddd;
+    border-radius: 4px;
+}
+
+#filters label {
+    margin-right: 10px;
+}
+
+#filters select {
+    padding: 8px;
+    font-size: 1em;
+    border: 2px solid #ddd;
+    border-radius: 4px;
+}
+
+/* Lista de tarefas */
+section#task-list {
+    
+    background: rgba(255, 255, 255, 0.2);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+section#task-list h2 {
+    margin-bottom: 20px;
+    font-size: 1.5em;
+    color: #FFD700;
+}
+
+#tasks {
+    
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.task-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.task-item:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.task-item .buttons button {
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 0.9em;
+}
+
+.task-item .buttons .delete {
+    background: #e74c3c;
+}
+
+.task-item .buttons .edit {
+    background: #f39c12;
+}
+
+.task-item .buttons button:hover {
+    opacity: 0.8;
+}
+
+/* Modal */
+#add-task-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    background: #fff;
+    color: #333;
+    padding: 20px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+#add-task-modal h2 {
+    margin-bottom: 20px;
+    font-size: 1.5em;
+    color: #333;
+}
+
+#add-task-modal form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+
+}
+
+#add-task-modal form textarea{
+    width: 95%;
+    padding: 8px;
+    
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    height: 180px;
+}
+
+#add-task-modal form input,
+
+#add-task-modal form select {
+    max-width: 300px;
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1em;
+}
+
+#add-task-modal form button {
+    background: #3498db;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+#add-task-modal form button:hover {
+    background: #2980b9;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 5;
+    display: none;
+}
+
+.overlay.active {
+    display: block;
+}
+/* Corpo da página */
+body#corpinho {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #3B8CE5, #764BF5);
+    color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+
+
+/* Área principal */
+main#main-suporte {
+    width: 90%; /* Tornar mais responsivo */
+    max-width: 600px; /* Aumentar largura máxima */
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+    padding: 35px; /* Mais espaçamento interno */
+    text-align: center;
+}
+
+/* Título */
+h1.title {
+    font-size: 3em; /* Aumentar o tamanho da fonte */
+    margin-bottom: 30px; /* Mais espaço abaixo */
+    color: #ffffff;
+}
+
+/* Botão voltar */
+#btn-comeback button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    margin-bottom: 30px; /* Mais espaçamento inferior */
+}
+
+#btn-comeback img {
+    width: 50px; /* Aumentar tamanho do ícone */
+    height: 50px;
+    transition: transform 0.2s;
+}
+
+#btn-comeback button:hover img {
+    transform: scale(1.5) rotate(-10deg); /* Efeito maior */
+}
+
+/* Formulário */
+.login-container {
+    background: rgba(255, 255, 255, 0.4); /* Fundo levemente opaco */
+    border-radius: 15px; /* Bordas arredondadas */
+    padding: 20px; /* Espaçamento interno */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    height: 500px;
+}
+
+.login-container h2 {
+    font-size: 2.5em; /* Fonte maior */
+    margin-bottom: 20px;
+    color: #ffffff;
+}
+
+
+form.form-login input {
+    width: calc(100% - 20px); /* Ajusta para o padding */
+    padding: 12px; /* Espaço interno do input */
+    margin: 12px 0; /* Espaço entre os inputs */
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    background: rgba(255, 255, 255, 0.9);
+    color: #333;
+}
+
+
+form.form-login input:focus {
+    outline: none;
+    box-shadow: 0 0 12px rgba(0, 123, 255, 0.8);
+}
+
+form.form-login button {
+    width: 100%;
+    background: #4CAF50;
+    color: white;
+    font-weight: bold;
+    font-size: 1.5em; /* Aumentar fonte do botão */
+    padding: 15px; /* Aumentar espaçamento */
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+form.form-login button:hover {
+    background: #3D8C41;
+}
+
+/* Links auxiliares */
+.forget-password-container a,
+.register-container a {
+    color: #FFD700;
+    font-size: 1.2em; /* Aumentar tamanho da fonte */
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.forget-password-container{
+    margin-top: 40px;
+}
+
+.forget-password-container a:hover,
+.register-container a:hover {
+    color: #FFA500;
+}
+
+.register-container{
+        font-size: large;
+        
+        margin-top: 20px;
+}
+
+.register-container a {
+    font-weight: bold;
+}
+/* Container de Cadastro */
+.register-container {
+    background: rgba(255, 255, 255, 0.3); /* Fundo consistente com o login */
+    border-radius: 15px; /* Bordas arredondadas */
+    padding: 30px; /* Mais espaço interno */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); /* Sombra igual ao login */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centralizar elementos */
+    gap: 15px; /* Espaçamento entre os inputs */
+}
+
+/* Inputs do formulário */
+form.form-register input[type="text"],
+form.form-register input[type="email"],
+form.form-register input[type="password"],
+form.form-register input[type="date"] {
+    width: 100%; /* Inputs preenchendo a largura */
+    max-width: 400px; /* Máximo de largura */
+    padding: 12px; /* Altura consistente */
+    font-size: 1.1em; /* Texto maior */
+    border: none;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.9); /* Fundo claro */
+    color: #333;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Botão */
+form.form-register button {
+    width: 100%;
+    max-width: 400px;
+    background: #4CAF50; /* Cor consistente com o login */
+    color: white;
+    font-weight: bold;
+    font-size: 1.2em;
+    padding: 15px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+form.form-register button:hover {
+    background: #3D8C41; /* Cor hover consistente */
+}
+
+/* Label */
+form.form-register label {
+    margin-top: 20px;
+    font-size: 1.2em; /* Maior para melhor leitura */
+    color: #ffffff;
+    text-align: left;
+    width: 100%; /* Alinhamento igual ao input */
+    max-width: 400px;
+}
+
+/* Estilo para o fundo do modal */
+#add-task-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #ffffff;
+    padding: 20px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    z-index: 1000;
+    display: none; /* Escondido por padrão */
+}
+
+/* Mostra o modal ao remover a classe 'hidden' */
+#add-task-modal:not(.hidden) {
+    display: block;
+}
+
+/* Estilo para o título do modal */
+#add-task-modal h2 {
+    margin: 0 0 20px;
+    font-size: 24px;
+    color: #333333;
+    text-align: center;
+}
+
+/* Estilo para o formulário dentro do modal */
+#add-task-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Campos de entrada do formulário */
+#add-task-form input[type="text"],
+#add-task-form textarea,
+#add-task-form select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #333333;
+    resize: none;
+}
+
+/* Botão de salvar */
+#add-task-form button {
+    background-color: #007BFF;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Botão hover */
+#add-task-form button:hover {
+    background-color: #0056b3;
+}
+
+/* Estilo para o fundo opaco (overlay) */
+body::before {
+    content: "";
+    display: none; /* Escondido por padrão */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+/* Mostrar overlay quando modal estiver visível */
+#add-task-modal:not(.hidden) ~ body::before {
+    display: block;
+}
+
+/* Ajuste do botão de fechar no modal */
+#add-task-modal .close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: #333333;
+}
+#task-display {
+    margin-top: 20px;
+    padding: 10px;
+    border-top: 2px solid #ccc;
+    background-color: #f9f9f9;
+}
+
+.class-hr-tasks{
+    margin-top: 50px;
+    
+    max-width:500px;
+    border-color: #ffffff00;
+
+}   
+
+.task {
+    max-width: 100%; /* Garante que a div ocupe no máximo toda a largura disponível */
+    word-wrap: break-word; /* Permite que o texto que ultrapassar a largura da div quebre para a linha de baixo */
+    overflow-wrap: break-word; /* Alternativa ao word-wrap, mas com o mesmo efeito */
+    white-space: normal; /* Garante que o texto quebra normalmente, sem forçar a linha a ser mantida */
+}
+
+@keyframes swing {
+    0% { transform: rotate(0deg); }
+    25% { transform: rotate(5deg); }
+    50% { transform: rotate(0deg); }
+    75% { transform: rotate(-5deg); }
+    100% { transform: rotate(0deg); }
+}
+
+.swing {
+    animation: swing 0.5s ease-in-out;
+}
+.alerta-vermelho{
+    border-color: red 1px ;
+}
+.fade-out {
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.close-btn{
+    justify-content: left;
+    padding: 10px;
+    background-color:#ffffff00;
+}
+
+.update-btn,
+.delete-btn{
+    padding: 10px 15px;
+    border-radius: 5px;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+.update-btn{
+    background-color: #4CAF50;
+}
+.update-button:hover {
+    background-color: #45A049; /* Slightly darker for hover */
+}
+
+.delete-btn{
+    background-color: #F44336;
+}
+.delete-button:hover {
+    background-color: #D32F2F; /* Slightly darker for hover */
+}
